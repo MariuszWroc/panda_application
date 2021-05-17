@@ -13,14 +13,16 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.net.MalformedURLException;
 
-
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {PandaApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class PandaApplicationSeleniumTest {
-    private static WebDriver driver;
+    private WebDriver driver;
     @LocalServerPort
     private int port;
 
@@ -29,7 +31,7 @@ public class PandaApplicationSeleniumTest {
         FirefoxOptions capabilities = new FirefoxOptions();
         capabilities.setCapability("marionette", true);
         driver = new RemoteWebDriver(new URL("http://192.168.44.44:4444/wd/hub"), capabilities);
-        driver.get("untrusted/self-signed URL");
+        driver.get(String.format("http://192.168.44.44:%d", port));
     }
 
     @Test
