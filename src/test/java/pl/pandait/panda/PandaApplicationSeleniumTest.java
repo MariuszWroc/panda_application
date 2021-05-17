@@ -29,7 +29,7 @@ public class PandaApplicationSeleniumTest {
         FirefoxOptions capabilities = new FirefoxOptions();
         capabilities.setCapability("marionette", true);
         driver = new RemoteWebDriver(new URL("http://192.168.44.44:4444/wd/hub"), capabilities);
-        driver.get(String.format("http://192.168.44.44:%d", port));
+        driver.get(String.format("http://192.168.44.44:%d", "9999"));
     }
 
     @Test
