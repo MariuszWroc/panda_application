@@ -28,9 +28,7 @@ public class PandaApplicationSeleniumTest {
 
     @BeforeEach
     public void startup() throws InterruptedException, MalformedURLException {
-        FirefoxOptions capabilities = new FirefoxOptions();
-        capabilities.setCapability("marionette", true);
-        driver = new RemoteWebDriver(new URL("http://192.168.44.44:4444/wd/hub"), capabilities);
+        driver = new FirefoxDriver();
         driver.get(String.format("http://192.168.44.44:%d", port));
     }
 
